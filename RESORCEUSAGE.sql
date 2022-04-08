@@ -1,0 +1,37 @@
+DROP TABLE IF EXISTS ENTRIES
+
+create table entries ( 
+name varchar(20),
+address varchar(20),
+email varchar(20),
+floor int,
+resources varchar(10));
+
+insert into entries 
+values ('A','Bangalore','A@gmail.com',1,'CPU'),('A','Bangalore','A1@gmail.com',1,'CPU'),('A','Bangalore','A2@gmail.com',2,'DESKTOP')
+,('B','Bangalore','B@gmail.com',2,'DESKTOP'),('B','Bangalore','B1@gmail.com',2,'DESKTOP'),('B','Bangalore','B2@gmail.com',1,'MONITOR')
+
+SELECT * FROM entries 
+
+;WITH 
+UNIQUE_RESOURCES  AS (SELECT DISTINCT NAME,RESOURCES FROM  entries),
+TOTAL_NO_VISITS AS (SELECT  NAME,COUNT(1) AS TOTAL_VISITS FROM  entries GROUP BY NAME),
+RESOURCES_LIST AS
+( SELECT NAME,STRING_AGG(RESOURCES,',') AS RESOURCES_AGG
+FROM UNIQUE_RESOURCES
+GROUP BY name
+)
+,FLOOR_VISITS AS
+(SELECT NAME,FLOOR,COUNT(1) AS NOOFFLOOR_VISITS,DENSE_RANK () OVER (ORDER BY COUNT(1) DESC) AS RANKING
+FROM ENTRIES 
+GROUP BY NAME,FLOOR
+
+)
+
+SELECT F.NAME, T.TOTAL_VISITS,FLOOR AS MAX_VISTED_FLOOR,RESOURCES_AGG
+FROM FLOOR_VISITS F
+JOIN RESOURCES_LIST R
+ON F.NAME=R.NAME
+JOIN TOTAL_NO_VISITS T
+ON T.NAME=R.NAME
+WHERE F.RANKING=1
