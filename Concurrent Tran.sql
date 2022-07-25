@@ -1,0 +1,8 @@
+/*
+Isolation Level Dirty Reads Lost Update Nonrepeatable Reads Phantom Reads
+Read Uncommitted Yes  Yes  Yes   Yes
+Read Committed No  Yes  Yes   Yes
+Repeatable Read No  No  No   Yes
+Snapshot  No  No  No   No
+Serializable No  No  No   No
+*/
