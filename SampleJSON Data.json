@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "age": 25,
+    "email": "johndoe@example.com",
+    "address": {
+      "street": "123 Main St",
+      "city": "New York",
+      "state": "NY",
+      "zipcode": "10001"
+    },
+    "phone_numbers": [
+      "555-1234",
+      "555-5678"
+    ],
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "age": 30,
+    "email": "janesmith@example.com",
+    "address": {
+      "street": "456 Elm St",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zipcode": "90001"
+    },
+    "phone_numbers": [
+      "555-9876",
+      "555-4321"
+    ],
+    "active": false
+  }
+]
